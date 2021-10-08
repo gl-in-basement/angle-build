@@ -36,7 +36,7 @@ jobs:
       - run: scripts/build_angle.sh
         shell: bash
       - name: Upload a Build Artifact
-      - uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.2.4
         with:
           # Artifact name
           name: angle # optional, default is artifact
