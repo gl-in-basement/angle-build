@@ -1,0 +1,17 @@
+# EXPERIMENTAL
+#NOTE it would be nice if libs like d3d9.lib could be
+#included but I'm pretty sure there's no way to make
+#that automatic with static libraries, so consumers
+#must link against them (this is OBJ only)
+angle_static_library("libANGLE_static") {
+  #https://groups.google.com/a/chromium.org/g/gn-dev/c/tlckKRJ9uSE
+  complete_static_lib = true
+  public_deps = [ ":libANGLE" ] 
+
+}
+angle_static_library("libANGLE_with_capture_static") {
+  #https://groups.google.com/a/chromium.org/g/gn-dev/c/tlckKRJ9uSE
+  complete_static_lib = true
+  public_deps = [ ":libANGLE_with_capture" ]
+}
+
