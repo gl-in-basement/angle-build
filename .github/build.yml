@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "*"
+  workflow_dispatch:
+    inputs:
+      skip_release:
+        description: 'Skip release related steps? (true/false)'
+        required: true
+        default: 'false'
+jobs:
+  windows:
+    runs-on: windows-2019
+  strategy:
+    matrix:
+      build_type: [Release]
+    fail-fast: false
+  steps:
+    - uses: microsoft/setup-msbuild@v1
+    - uses: ilammy/msvc-dev-cmd@v1
+    - shell: bash
