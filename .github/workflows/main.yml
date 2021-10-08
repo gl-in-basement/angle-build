@@ -28,5 +28,5 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
       - run: git clone https://chromium.googlesource.com/angle/angle
-      - run: export PATH=$PWD/depot_tools:$PATH && cd angle && python scripts/bootstrap.py && gclient sync && git checkout main && gen out/Release --args='is_debug=false' && autoninja -C out/Release
+      - run: export PATH=$PWD/depot_tools:$PATH && cd angle && python scripts/bootstrap.py && gclient sync && git checkout main && gn gen out/Release --args='is_debug=false' && autoninja -C out/Release
         shell: bash
