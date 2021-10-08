@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  angle-windows-x64:
+    runs-on: windows-2019
+    env:
+      DEPOT_TOOLS_WIN_TOOLCHAIN: 0
+    strategy:
+      matrix:
+        build_type: [Release]
+      fail-fast: true
+    steps:
+      - uses: microsoft/setup-msbuild@v1
+      - uses: ilammy/msvc-dev-cmd@v1
+      - shell: bash
+      - run: git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+      - run: git clone https://chromium.googlesource.com/angle/angle
+      - run: export PATH=$PWD/depot_tools:$PATH && cd angle && python scripts/bootstrap.py && gclient sync && git checkout main && gen out/Release --args='is_debug=false' && autoninja -C out/Release
