@@ -42,6 +42,6 @@ jobs:
           # Artifact name
           name: angle # optional, default is artifact
           # A file, directory or wildcard pattern that describes what to upload
-          path: angle.tar.gz
+          path: ./angle/out/Release/
           # The desired behavior if no files are found using the provided path.
           if-no-files-found: error
