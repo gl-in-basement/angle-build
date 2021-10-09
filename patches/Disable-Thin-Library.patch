@@ -1,0 +1,31 @@
+diff --git config/compiler/BUILD.gn config/compiler/BUILD.gn
+index 673716fb5..d2dc0b709 100644
+--- build/config/compiler/BUILD.gn
++++ build/config/compiler/BUILD.gn
+@@ -74,6 +74,10 @@ declare_args() {
+   # This is initialized below, after use_gold might have been overridden.
+   gold_path = ""
+
++  # Create thin archive.
++  # Toggle to false when you want to distribute the library.
++  enable_thin_archive = true
++
+   # Enable fatal linker warnings. Building Chromium with certain versions
+   # of binutils can cause linker warning.
+   fatal_linker_warnings = true
+@@ -1898,10 +1902,12 @@ config("thin_archive") {
+   # archives.
+   # TODO(crbug.com/1221615): Enable on is_apple if use_lld once that no longer
+   # confuses lldb.
+-  if ((is_posix && !is_nacl && !is_apple) || is_fuchsia) {
+-    arflags = [ "-T" ]
+-  } else if (is_win && use_lld) {
+-    arflags = [ "/llvmlibthin" ]
++  if (enable_thin_archive){
++    if  ((is_posix && !is_nacl && !is_apple) || is_fuchsia) {
++      arflags = [ "-T" ]
++    } else if (is_win && use_lld) {
++      arflags = [ "/llvmlibthin" ]
++    }
+   }
+ }
