@@ -1,0 +1,32 @@
+name: Release
+
+# Controls when the workflow will run
+on: workflow_dispatch
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  release-windows-x64-msvc:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: dawidd6/action-download-artifact@v2.15.0
+        with:
+          workflow: workflows/main.yml
+          name: angle-windows-x64-msvc
+          check_artifacts: true
+      - name: Upload GitHub release assets
+        uses: djnicholson/release-action@v2.10
+        with:
+          # GitHub auth token
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Name of Release to add file to
+          release-name: latest
+          # Name of the tag for the release (will be associated with current branch)
+          tag-name: latest
+          # Name for the asset
+          asset-name: angle-windows-x64-msvc.tar.gz
+          # File to release
+          file: angle-windows-x64-msvc.tar.gz
