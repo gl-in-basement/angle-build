@@ -3,7 +3,7 @@ echo "Packaging"
 # packaging
 cd angle
 mkdir dist
-cp out/Release/obj/*static.lib ./dist/
+cp out/Release/obj/*.lib ./dist/
 llvm-ar rcs dist/libc++.lib out/Release/obj/buildtools/third_party/libc++/libc++/*.obj
 mkdir dist/vulkan-support
 cp -r out/Release/{vk_swiftshader_icd.json,\
