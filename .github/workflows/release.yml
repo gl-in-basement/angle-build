@@ -1,10 +1,8 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Release
 
 # Controls when the workflow will run
 on: workflow_dispatch
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -16,8 +14,8 @@ jobs:
     steps:
       - uses: dawidd6/action-download-artifact@v2.15.0
         with:
-          workflow: workflows/main.yml
-          name: angle
+          workflow: main.yml
+          name: angle-windows-x64-msvc
           check_artifacts: true
       - name: Upload GitHub release assets
         uses: djnicholson/release-action@v2.10
@@ -25,11 +23,10 @@ jobs:
           # GitHub auth token
           token: ${{ secrets.GITHUB_TOKEN }}
           # Name of Release to add file to
-          release-name: Latest build
+          release-name: latest
           # Name of the tag for the release (will be associated with current branch)
           tag-name: latest
           # Name for the asset
-          asset-name: angle-windows-x64.tar.gz
+          asset-name: angle-windows-x64-msvc.tar.gz
           # File to release
-          file: angle-windows-x64.tar.gz
-
+          file: angle-windows-x64-msvc.tar.gz
