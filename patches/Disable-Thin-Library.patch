@@ -1,7 +1,7 @@
-diff --git config/compiler/BUILD.gn config/compiler/BUILD.gn
+diff --git a/build/config/compiler/BUILD.gn b/build/config/compiler/BUILD.gn
 index 673716fb5..d2dc0b709 100644
---- build/config/compiler/BUILD.gn
-+++ build/config/compiler/BUILD.gn
+--- a/build/config/compiler/BUILD.gn
++++ b/build/config/compiler/BUILD.gn
 @@ -74,6 +74,10 @@ declare_args() {
    # This is initialized below, after use_gold might have been overridden.
    gold_path = ""

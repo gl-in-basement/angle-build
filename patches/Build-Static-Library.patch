@@ -1,7 +1,7 @@
-diff --git BUILD.gn BUILD.gn
+diff --git a/BUILD.gn b/BUILD.gn
 index 24c32dae1..1e16c4dde 100644
---- BUILD.gn
-+++ BUILD.gn
+--- a/BUILD.gn
++++ b/BUILD.gn
 @@ -1429,3 +1429,20 @@ group("angle") {
      ":libGLESv2",
    ]
